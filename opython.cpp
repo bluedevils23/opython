@@ -29,6 +29,12 @@ static PyObject* getSymbol(PyObject *self, PyObject *args) {
 	return Py_BuildValue("d", res);
 }
 
+static PyObject* GetHandnumber(PyObject* self, PyObject* args) {
+
+	char* ret = GetHandnumber();
+	return Py_BuildValue("s", ret);
+}
+
 PyObject* redirectStdout(PyObject* self, PyObject* pArgs) {
 
 	char* LogStr = NULL;
@@ -69,6 +75,7 @@ static PyObject* error_out(PyObject *m) {
 
 static PyMethodDef openholdem_methods[] = {
 	{ "getSymbol", (PyCFunction)getSymbol, METH_VARARGS, "Get OpenHoldem symbol" },
+	{ "GetHandnumber", (PyCFunction)GetHandnumber, METH_VARARGS, "Get OpenHoldem handnumber" },
 	{ "_stdout", redirectStdout, METH_VARARGS, "Captures stdout" },
 	{ "_stderr", redirectStderr, METH_VARARGS, "Captures stderr" },
 	{ NULL, NULL, 0, NULL }
